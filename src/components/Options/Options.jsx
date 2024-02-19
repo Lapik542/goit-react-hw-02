@@ -1,10 +1,10 @@
-export const Options = ({ onGoodClick, onNeutralClick, onBadClick, onResetClick }) => {
+export const Options = ({ onGoodClick, onNeutralClick, onBadClick, onResetClick, isFeedbackGiven }) => {
    return (
       <div>
         <button onClick={onGoodClick}>Good</button>
         <button onClick={onNeutralClick}>Neutral</button>
         <button onClick={onBadClick}>Bad</button>
-        <button onClick={onResetClick}>Reset</button>
+        {isFeedbackGiven && <button onClick={onResetClick}>Reset</button>}
       </div>
    );
 };

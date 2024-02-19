@@ -8,6 +8,7 @@ export const App = () => {
    const [good, setGood] = useState(parseInt(localStorage.getItem('good'), 10) || 0);
    const [neutral, setNeutral] = useState(parseInt(localStorage.getItem('neutral'), 10) || 0);
    const [bad, setBad] = useState(parseInt(localStorage.getItem('bad'), 10) || 0);
+   const [isFeedbackGiven, setIsFeedbackGiven] = useState(false);
 
    useEffect(() => {
       localStorage.setItem('good', good);
@@ -17,20 +18,24 @@ export const App = () => {
 
    const handleGoodClick = () => {
       setGood(good + 1);
+      setIsFeedbackGiven(true); 
    };
 
    const handleNeutralClick = () => {
       setNeutral(neutral + 1);
+      setIsFeedbackGiven(true);
    };
 
    const handleBadClick = () => {
       setBad(bad + 1);
+      setIsFeedbackGiven(true);
    };
 
    const handleResetClick = () => {
       setGood(0);
       setNeutral(0);
       setBad(0);
+      setIsFeedbackGiven(false); 
    };
    
    const totalFeedback = good + neutral + bad;
@@ -44,7 +49,8 @@ export const App = () => {
             onGoodClick={handleGoodClick}
             onNeutralClick={handleNeutralClick}
             onBadClick={handleBadClick}
-            onResetClick={handleResetClick} />
+            onResetClick={handleResetClick}
+            isFeedbackGiven={isFeedbackGiven} />
          {totalFeedback === 0 ? (
             <Notification message="No feedback given yet." />
          ) : (
