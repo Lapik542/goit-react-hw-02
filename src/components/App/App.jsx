@@ -8,13 +8,14 @@ export const App = () => {
    const [good, setGood] = useState(parseInt(localStorage.getItem('good'), 10) || 0);
    const [neutral, setNeutral] = useState(parseInt(localStorage.getItem('neutral'), 10) || 0);
    const [bad, setBad] = useState(parseInt(localStorage.getItem('bad'), 10) || 0);
-   const [isFeedbackGiven, setIsFeedbackGiven] = useState(false);
+   const [isFeedbackGiven, setIsFeedbackGiven] = useState(localStorage.getItem('isFeedbackGiven') === 'true');
 
    useEffect(() => {
       localStorage.setItem('good', good);
       localStorage.setItem('neutral', neutral);
       localStorage.setItem('bad', bad);
-   }, [good, neutral, bad]);
+      localStorage.setItem('isFeedbackGiven', isFeedbackGiven);
+   }, [good, neutral, bad, isFeedbackGiven]);
 
    const handleGoodClick = () => {
       setGood(good + 1);
